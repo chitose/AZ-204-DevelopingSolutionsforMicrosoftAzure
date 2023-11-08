@@ -11,12 +11,12 @@
 
     public class Program
     {
-        private const string EndpointUrl = "";
-        private const string AuthorizationKey = "";
+        private const string EndpointUrl = "https://polycosmospnh.documents.azure.com:443/";
+        private const string AuthorizationKey = "F1BAQ8LxmEI64jIozHvtBXY74mIx6tPbnfWWVIQEIcTXNpaTUB3Li81FV4XQhGUtKxYmOhhD8SlcACDbpit0bg==";
         private const string DatabaseName = "Retail";
         private const string ContainerName = "Online";
-        private const string PartitionKey = "";
-        private const string JsonFilePath = "";
+        private const string PartitionKey = "/Category";
+        private const string JsonFilePath = "./model.json";
 
         static private int amountToInsert;
         static List<Model> models;
@@ -31,6 +31,7 @@
 
                 // <Initialize>
                 Console.WriteLine($"Creating a database if not already exists...");
+                Database testdb = cosmosClient.GetDatabase("abakwj");
                 Database database = await cosmosClient.CreateDatabaseIfNotExistsAsync(Program.DatabaseName);
 
                 // Configure indexing policy to exclude all attributes to maximize RU/s usage
